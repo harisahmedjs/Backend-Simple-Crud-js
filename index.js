@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+//middleware
 app.use(express.json());
 
 const arr = [];
@@ -10,12 +11,12 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-// Get all users
+// Get full arr
 app.get('/api/v1/users', (req, res) => {
   res.send(arr);
 });
 
-// Add user
+// Add title
 app.post('/api/v1/users', (req, res) => {
   const { title } = req.body;
 
@@ -28,7 +29,7 @@ app.post('/api/v1/users', (req, res) => {
 });
 
 
-//delete user
+//delete title
 app.delete('/api/v1/users/:id' , (req , res) => {
      const {id} = req.params
      const index = arr.findIndex((user)=> user.id === Number(id))
@@ -42,7 +43,7 @@ app.delete('/api/v1/users/:id' , (req , res) => {
 })
 
 
-//edit user
+//edit title
 app.put('/api/v1/users/:id', (req , res) => {
      const { title } = req.body
      const { id }   =  req.params
